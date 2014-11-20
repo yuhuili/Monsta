@@ -1,0 +1,13 @@
+<!-- Copyright 2014 Ayogo Health Inc. -->
+@charset "UTF-8";
+/* CSS Document */
+
+* {
+	margin:0;
+	padding:0;
+}
+.cac_html_button {
+	text-decoration:none;
+	color:white;
+	-webkit-text-stroke: 1px #fff;
+}
