@@ -23,13 +23,13 @@ Open monsta.html inside Standalone Page.
 (use it on a web page)
 
 1. Inside ```<head>``` tag, include the following stylesheet and script links.
-```
-<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-<link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
-<link href="css/cac.css" rel='stylesheet' type='text/css'/>
-<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-<script src="//code.createjs.com/createjs-2013.12.12.min.js"></script>
-```
+  ```
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+  <link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  <link href="css/cac.css" rel='stylesheet' type='text/css'/>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="//code.createjs.com/createjs-2013.12.12.min.js"></script>
+  ```
 
 2. Define Monsta variable and initialize it, define the callback method if necessary.
 ``` 
