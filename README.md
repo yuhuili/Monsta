@@ -28,7 +28,10 @@ Inside ```<head>``` tag, include the following stylesheet and script links.
 ```
 
 Define Monsta variable and initialize it, define the callback method if necessary.
-``` Monsta("CANVAS_ID","VARIABLE_NAME")```
+``` 
+Monsta("CANVAS_ID","VARIABLE_NAME")
+```
+
 ```
 <script>
   var captcha;
