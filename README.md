@@ -28,6 +28,7 @@ Inside ```<head>``` tag, include the following stylesheet and script links.
 ```
 
 Define Monsta variable and initialize it, define the callback method if necessary.
+``` Monsta("CANVAS_ID","VARIABLE_NAME")```
 ```
 <script>
   var captcha;
@@ -37,7 +38,7 @@ Define Monsta variable and initialize it, define the callback method if necessar
   }
 </script>
 ```
-```myCanvas``` is the id of the canvas, while captcha is the name of the variable you are assigning to.
+```myCanvas``` is the id of the canvas, while captcha is the name of the variable you are assigning to. Make sure to define the variable outside of the scope of init. (globally defined)
 
 Navigate to <body> tag, add a method to be called onload so that the captcha would be loaded automatically.
 ```<body onload="init()">```
