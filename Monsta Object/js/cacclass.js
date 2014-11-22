@@ -188,7 +188,7 @@ function Monsta(monstaCanvas,createjsVarName) {
 	}
 	
 	this.checkStatus = function() {
-		if (!monstaStage.contains(this.coin1)&&!monstaStage.contains(this.coin2)&&!monstaStage.contains(this.coin3)) {
+		if (!monstaStage.contains(this.coin1)&&!monstaStage.contains(this.coin2)&&!monstaStage.contains(this.coin3)&&this.CHENGGONG!=10880) {
 			this.CHENGGONG=10880; // random number
 			monstaStage.removeChild(this.dragger);
 			monstaStage.removeChild(this.bomb);
@@ -262,6 +262,10 @@ function Monsta(monstaCanvas,createjsVarName) {
 		this.completedText.y=this.COMPLETED_Y;
 		this.completedText.textBaseline="alphabetic";
 		monstaStage.addChild(this.completedText);
+		
+		if (typeof this.onSuccess === "function") { 
+			this.onSuccess();
+		}
 	}
 	
 	this.showFailed = function() {
