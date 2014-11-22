@@ -7,15 +7,13 @@
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 <link href="css/cac.css" rel='stylesheet' type='text/css'/>
-<script src="http://code.createjs.com/createjs-2013.12.12.min.js"></script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+<script src="//code.createjs.com/createjs-2013.12.12.min.js"></script>
 <script src="js/cacclass.js"></script>
 <script>
-
+var captcha;
 function init() {
-	var captcha = new Monsta();
-	captcha.createCoins();
-	captcha.createBomb();
-	captcha.createObstacles();
+	captcha = new Monsta("myCanvas","captcha");
 }
 
 </script>
@@ -26,9 +24,6 @@ function init() {
 	<canvas id="myCanvas" width="400" height="250" style="z-index:0">
     	No Canvas
     </canvas>
-    <a href="javascript:resetStage()" id="cac_reset_button" class="cac_html_button" style="position:absolute;left:250px;top:210px;z-index:10"><i class="fa fa-rotate-right fa-2x"></i></a>
-    <a href="javascript:void(0)" id="cac_accessibility_button" class="cac_html_button" style="position:absolute;left:305px;top:210px;z-index:10"><i class="fa fa-wheelchair fa-2x"></i></a>
-    <a href="javascript:void(0)" id="cac_question_button" class="cac_html_button"  style="position:absolute;left:360px;top:210px;z-index:10"><i class="fa fa-question fa-2x"></i></a>
 </div>
 </body>
 </html>
