@@ -8,16 +8,19 @@ Monsta is a client-side captcha based on CreateJS and Canvas. The user has to dr
 
 Standalone vs Object
 ======
-Standalone: (demo only) a single webpage with Monsta defined in a js file, but not as an object.
+##Standalone:
+(demo only) a single webpage with Monsta defined in a js file, but not as an object.
 
-Object: A webpage can initialize the Monsta object and define a callback method.
+##Object:
+A webpage can initialize the Monsta object and define a callback method.
 
 Setup
 ======
-Standalone:
+##Standalone:
 Open monsta.html inside Standalone Page.
 
-Object: (use it on a web page)
+##Object:
+(use it on a web page)
 Inside ```<head>``` tag, include the following stylesheet and script links.
 ```
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
@@ -41,7 +44,7 @@ Monsta("CANVAS_ID","VARIABLE_NAME")
   }
 </script>
 ```
-```myCanvas``` is the id of the canvas, while captcha is the name of the variable you are assigning to. Make sure to define the variable outside of the scope of init. (globally defined)
+*```myCanvas``` is the id of the canvas, while captcha is the name of the variable you are assigning to. Make sure to define the variable outside of the scope of init. (globally defined)*
 
 Navigate to ```<body>``` tag, add a method to be called onload so that the captcha would be loaded automatically.
 ```<body onload="init()">```
