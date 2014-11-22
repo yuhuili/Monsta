@@ -43,7 +43,7 @@ Monsta("CANVAS_ID","VARIABLE_NAME")
 ```
 ```myCanvas``` is the id of the canvas, while captcha is the name of the variable you are assigning to. Make sure to define the variable outside of the scope of init. (globally defined)
 
-Navigate to <body> tag, add a method to be called onload so that the captcha would be loaded automatically.
+Navigate to ```<body>``` tag, add a method to be called onload so that the captcha would be loaded automatically.
 ```<body onload="init()">```
 
 Then, navigate to the place where the captcha would be dipalyed, put the following block.
