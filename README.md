@@ -8,18 +8,18 @@ Monsta is a client-side captcha based on CreateJS and Canvas. The user has to dr
 
 Standalone vs Object
 ======
-##Standalone:
+####Standalone:
 (demo only) a single webpage with Monsta defined in a js file, but not as an object.
 
-##Object:
+####Object:
 A webpage can initialize the Monsta object and define a callback method.
 
 Setup
 ======
-##Standalone:
+####Standalone:
 Open monsta.html inside Standalone Page.
 
-##Object:
+####Object:
 (use it on a web page)
 Inside ```<head>``` tag, include the following stylesheet and script links.
 ```
