@@ -18,14 +18,17 @@ Standalone:
 Open monsta.html inside Standalone Page.
 
 Object: (use it on a web page)
-Inside <head> tag, include the following stylesheet and script links.
+Inside ```<head>``` tag, include the following stylesheet and script links.
+```
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 <link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
 <link href="css/cac.css" rel='stylesheet' type='text/css'/>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script src="//code.createjs.com/createjs-2013.12.12.min.js"></script>
+```
 
 Define Monsta variable and initialize it, define the callback method if necessary.
+```
 <script>
   var captcha;
   function init() {
@@ -33,15 +36,18 @@ Define Monsta variable and initialize it, define the callback method if necessar
     captcha.onSuccess = methodToBeCalled;
   }
 </script>
-myCanvas is the id of the canvas, while captcha is the name of the variable you are assigning to.
+```
+```myCanvas``` is the id of the canvas, while captcha is the name of the variable you are assigning to.
 
 Navigate to <body> tag, add a method to be called onload so that the captcha would be loaded automatically.
-<body onload="init()">
+```<body onload="init()">```
 
 Then, navigate to the place where the captcha would be dipalyed, put the following block.
+```
 <div style="position:relative">
 	<canvas id="myCanvas" width="400" height="250">
     No Canvas
   </canvas>
 </div>
-myCanvas is the same parameter defined earlier in the script.
+```
+```myCanvas``` is the same parameter defined earlier in the script.
