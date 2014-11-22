@@ -32,30 +32,30 @@ Open monsta.html inside Standalone Page.
   ```
 
 2. Define Monsta variable and initialize it, define the callback method if necessary.
-``` 
-Monsta("CANVAS_ID","VARIABLE_NAME")
-```
-
-```
-<script>
-  var captcha;
-  function init() {
-    captcha = new Monsta("myCanvas", "captcha");
-    captcha.onSuccess = methodToBeCalled;
-  }
-</script>
-```
-*```myCanvas``` is the id of the canvas, while captcha is the name of the variable you are assigning to. Make sure to define the variable outside of the scope of init. (globally defined)*
+  ``` 
+  Monsta("CANVAS_ID","VARIABLE_NAME")
+  ```
+  
+  ```
+  <script>
+    var captcha;
+    function init() {
+      captcha = new Monsta("myCanvas", "captcha");
+      captcha.onSuccess = methodToBeCalled;
+    }
+  </script>
+  ```
+  *```myCanvas``` is the id of the canvas, while captcha is the name of the variable you are assigning to. Make sure to define the variable outside of the scope of init. (globally defined)*
 
 3. Navigate to ```<body>``` tag, add a method to be called onload so that the captcha would be loaded automatically.
-```<body onload="init()">```
+  ```<body onload="init()">```
 
 4. Then, navigate to the place where the captcha would be dipalyed, put the following block.
-```
-<div style="position:relative">
-	<canvas id="myCanvas" width="400" height="250">
-    No Canvas
-  </canvas>
-</div>
-```
-```myCanvas``` is the same parameter defined earlier in the script.
+  ```
+  <div style="position:relative">
+  	<canvas id="myCanvas" width="400" height="250">
+      No Canvas
+    </canvas>
+  </div>
+  ```
+  *```myCanvas``` is the same parameter defined earlier in the script.*
