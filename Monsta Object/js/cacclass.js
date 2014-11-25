@@ -68,7 +68,11 @@ function Monsta(monstaCanvas,createjsVarName) {
 	
 	this.BOMB_IMAGE = new Image();
 	this.BOMB_IMAGE.onload = monstaUpdateStage(monstaStage);
-	this.BOMB_IMAGE.src = "bomb_40x40.png";
+	this.BOMB_IMAGE.src = "bomb.png";
+	
+	this.BOMB2_IMAGE = new Image();
+	this.BOMB2_IMAGE.onload = monstaUpdateStage(monstaStage);
+	this.BOMB2_IMAGE.src = "bomb2.png";
 	
 	this.BACKGROUND_IMAGE = new Image();
 	this.BACKGROUND_IMAGE.onload = monstaUpdateStage(monstaStage);
@@ -77,16 +81,21 @@ function Monsta(monstaCanvas,createjsVarName) {
 	this.gridW = Math.floor(280 / 40);
 	this.gridH = Math.floor(120 / 40);
 	
+	this.firstTime=1;
+	
 	this.init = function() {
-		
 		// Insert HTML buttons
 		/*
-		<a href="javascript:resetStage()" id="cac_reset_button" class="cac_html_button" style="position:absolute;left:250px;top:210px;z-index:10"><i class="fa fa-rotate-right fa-2x"></i></a>
-    <a href="javascript:void(0)" id="cac_accessibility_button" class="cac_html_button" style="position:absolute;left:305px;top:210px;z-index:10"><i class="fa fa-wheelchair fa-2x"></i></a>
-    <a href="javascript:void(0)" id="cac_question_button" class="cac_html_button"  style="position:absolute;left:360px;top:210px;z-index:10"><i class="fa fa-question fa-2x"></i></a>
-		*/
-		$("<a href=\"javascript:captcha.resetStage()\" id=\"cac_reset_button\" class=\"cac_html_button\" style=\"position:absolute;left:250px;top:210px;z-index:10\"><i class=\"fa fa-rotate-right fa-2x\"><\/i><\/a><a href=\"javascript:void(0)\" id=\"cac_accessibility_button\" class=\"cac_html_button\" style=\"position:absolute;left:305px;top:210px;z-index:10\"><i class=\"fa fa-wheelchair fa-2x\"><\/i><\/a><a href=\"javascript:void(0)\" id=\"cac_question_button\" class=\"cac_html_button\"  style=\"position:absolute;left:360px;top:210px;z-index:10\"><i class=\"fa fa-question fa-2x\"><\/i><\/a>").insertAfter("#"+monstaCanvas);
+<a href="javascript:resetStage()" id="cac_reset_button" class="cac_html_button" style="position:absolute;left:250px;top:210px;z-index:10"><i class="fa fa-rotate-right fa-2x"></i></a>
+<a href="javascript:void(0)" id="cac_accessibility_button" class="cac_html_button" style="position:absolute;left:305px;top:210px;z-index:10"><i class="fa fa-wheelchair fa-2x"></i></a>
+<a href="javascript:void(0)" id="cac_question_button" class="cac_html_button"  style="position:absolute;left:360px;top:210px;z-index:10"><i class="fa fa-question fa-2x"></i></a>
+*/
+		if($("#cac_reset_button").length == 0) {
+			//it doesn't exist
+			$("<a href=\"javascript:captcha.resetStage()\" id=\"cac_reset_button\" class=\"cac_html_button\" style=\"position:absolute;left:250px;top:210px;z-index:10\"><i class=\"fa fa-rotate-right fa-2x\"><\/i><\/a><a href=\"javascript:void(0)\" id=\"cac_accessibility_button\" class=\"cac_html_button\" style=\"position:absolute;left:305px;top:210px;z-index:10\"><i class=\"fa fa-wheelchair fa-2x\"><\/i><\/a><a href=\"javascript:void(0)\" id=\"cac_question_button\" class=\"cac_html_button\"  style=\"position:absolute;left:360px;top:210px;z-index:10\"><i class=\"fa fa-question fa-2x\"><\/i><\/a>").insertAfter("#"+monstaCanvas);
+		}
 		
+		this.fistTime=0;
 		this.filledPositions = [];
 		//Initialise empty grid (2-dimensional array)
 		for (var i=0; i<this.gridW; i++) {
@@ -204,6 +213,8 @@ function Monsta(monstaCanvas,createjsVarName) {
 		}
 	}
 	
+	this.timer1;
+	
 	this.createBomb = function() {
 		var random1 = this.assignNewPosition();
 		this.bomb = new createjs.Bitmap(this.BOMB_IMAGE);
@@ -212,7 +223,16 @@ function Monsta(monstaCanvas,createjsVarName) {
 		
 		this.bomb.regX = this.bomb.regY = 20;
 		
+		createjs.Tween.get(this.bomb, {loop:true}).to({y:this.bomb.y-8}, 400).to({y:this.bomb.y}, 1000);
+		
 		monstaStage.addChild(this.bomb);
+		
+		thisBomb=this.bomb;
+		thisImage1=this.BOMB_IMAGE;
+		thisImage2=this.BOMB2_IMAGE;
+		this.timer1=setInterval(function() {
+			monstaUpdateBomb(thisBomb, thisImage1, thisImage2);
+		}, 50);
 	}
 	
 	this.assignNewPosition = function() {
@@ -266,6 +286,7 @@ function Monsta(monstaCanvas,createjsVarName) {
 		if (typeof this.onSuccess === "function") { 
 			this.onSuccess();
 		}
+		clearInterval(this.timer1);
 	}
 	
 	this.showFailed = function() {
@@ -301,6 +322,8 @@ function Monsta(monstaCanvas,createjsVarName) {
 		this.addInstructions();
 	}
 	
+	
+	
 	this.init();
 	this.createCoins();
 	this.createBomb();
@@ -314,6 +337,19 @@ function monstaUpdateStage(monstaStage) {
 	if (monstaStage){
     	monstaStage.update();
 	}
+}
+
+bombBitmap=true;
+
+function monstaUpdateBomb(bomb,BOMB_IMAGE, BOMB2_IMAGE) {
+	console.log("test");
+	if (bombBitmap) {
+		bomb.image=BOMB_IMAGE;
+	}
+	else {
+		bomb.image=BOMB2_IMAGE;
+	}
+	bombBitmap=!bombBitmap;
 }
 
 function monstaRestart(monsta) {
