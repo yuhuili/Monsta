@@ -39,10 +39,10 @@ function Monsta(monstaCanvas,createjsVarName) {
 	this.OBJECT_X_OFFSET=0;
 	this.OBJECT_Y_RANGE=130;
 	this.OBJECT_Y_OFFSET=20;
-	this.OBSTACLE_X_RANGE=340;
-	this.OBSTACLE_X_OFFSET=0;
-	this.OBSTACLE_Y_RANGE=130;
-	this.OBSTACLE_Y_OFFSET=10;
+	this.MONSTER_X_RANGE=340;
+	this.MONSTER_X_OFFSET=0;
+	this.MONSTER_Y_RANGE=130;
+	this.MONSTER_Y_OFFSET=10;
 	
 	this.CHENGGONGCODE=10410;
 	this.CHENGGONG=this.CHENGGONGCODE;
@@ -122,11 +122,11 @@ function Monsta(monstaCanvas,createjsVarName) {
 	}
 	
 	// Create items on stage
-	this.createObstacles = function() {
+	this.createMonster = function() {
 		// Create monster
-		this.obstacle = new createjs.Bitmap(this.MONSTER_IMAGE);
-		this.obstacleX = Math.random()*this.OBSTACLE_X_RANGE+this.OBSTACLE_X_OFFSET;
-		this.obstacleY = Math.random()*this.OBSTACLE_Y_RANGE+this.OBSTACLE_Y_OFFSET;
+		this.monster = new createjs.Bitmap(this.MONSTER_IMAGE);
+		this.monsterX = Math.random()*this.MONSTER_X_RANGE+this.MONSTER_X_OFFSET;
+		this.monsterY = Math.random()*this.MONSTER_Y_RANGE+this.MONSTER_Y_OFFSET;
 		//obstacle.addEventListener("click", handleClickBad);
 		
 		this.dragger = new createjs.Container();
@@ -318,7 +318,7 @@ function Monsta(monstaCanvas,createjsVarName) {
 		this.init();
 		this.createCoins();
 		this.createBomb();
-		this.createObstacles();
+		this.createMonster();
 		this.addInstructions();
 	}
 	
@@ -327,7 +327,7 @@ function Monsta(monstaCanvas,createjsVarName) {
 	this.init();
 	this.createCoins();
 	this.createBomb();
-	this.createObstacles();
+	this.createMonster();
 	this.addInstructions();
 	
 	monstaStage.update();
