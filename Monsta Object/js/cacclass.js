@@ -125,14 +125,18 @@ function Monsta(monstaCanvas,createjsVarName) {
 	this.createMonster = function() {
 		// Create monster
 		this.monster = new createjs.Bitmap(this.MONSTER_IMAGE);
-		this.monsterX = Math.random()*this.MONSTER_X_RANGE+this.MONSTER_X_OFFSET;
-		this.monsterY = Math.random()*this.MONSTER_Y_RANGE+this.MONSTER_Y_OFFSET;
+		
+		var rand = this.assignNewPositionMonster();
+		this.monsterX = rand.x;
+		this.monsterY = rand.y;
+		//this.monsterX = Math.random()*this.MONSTER_X_RANGE+this.MONSTER_X_OFFSET;
+		//this.monsterY = Math.random()*this.MONSTER_Y_RANGE+this.MONSTER_Y_OFFSET;
 		//obstacle.addEventListener("click", handleClickBad);
 		
 		this.dragger = new createjs.Container();
-		this.dragger.x = this.obstacleX;
-		this.dragger.y = this.obstacleY;
-		this.dragger.addChild(this.obstacle);
+		this.dragger.x = this.monsterX;
+		this.dragger.y = this.monsterY;
+		this.dragger.addChild(this.monster);
 		monstaStage.addChild(this.dragger);
 		
 		myMonsta=this;
@@ -150,7 +154,7 @@ function Monsta(monstaCanvas,createjsVarName) {
 	};
 	
 	this.eatTest = function() {
-		var pt0 = this.obstacle.localToLocal(20,20,this.bomb);
+		var pt0 = this.monster.localToLocal(20,20,this.bomb);
 		if (this.bomb.hitTest(pt0.x, pt0.y)) { 
 			this.dragger.removeAllEventListeners();
 			this.failed=true;
@@ -159,11 +163,11 @@ function Monsta(monstaCanvas,createjsVarName) {
 			setTimeout(function() {myMonsta.restart()},1000);
 		}
 		
-		var pt1 = this.obstacle.localToLocal(20,20,this.coin1);
+		var pt1 = this.monster.localToLocal(20,20,this.coin1);
 		if (this.coin1.hitTest(pt1.x, pt1.y)) { monstaStage.removeChild(this.coin1); }
-		var pt2 = this.obstacle.localToLocal(20,20,this.coin2);
+		var pt2 = this.monster.localToLocal(20,20,this.coin2);
 		if (this.coin2.hitTest(pt2.x, pt2.y)) { monstaStage.removeChild(this.coin2); }
-		var pt3 = this.obstacle.localToLocal(20,20,this.coin3);
+		var pt3 = this.monster.localToLocal(20,20,this.coin3);
 		if (this.coin3.hitTest(pt3.x, pt3.y)) { monstaStage.removeChild(this.coin3); }
 		
 		this.checkStatus();
@@ -216,12 +220,12 @@ function Monsta(monstaCanvas,createjsVarName) {
 	this.timer1;
 	
 	this.createBomb = function() {
-		var random1 = this.assignNewPosition();
+		var random1 = this.assignNewPositionBomb();
 		this.bomb = new createjs.Bitmap(this.BOMB_IMAGE);
 		this.bomb.x=random1.x;
 		this.bomb.y=random1.y;
 		
-		this.bomb.regX = this.bomb.regY = 20;
+		//this.bomb.regX = this.bomb.regY = 20;
 		
 		createjs.Tween.get(this.bomb, {loop:true}).to({y:this.bomb.y-8}, 400).to({y:this.bomb.y}, 1000);
 		
@@ -235,6 +239,65 @@ function Monsta(monstaCanvas,createjsVarName) {
 		}, 50);
 	}
 	
+	this.assignNewPositionMonster = function() {
+		//Try random grid positions until an empty one is found, then mark it as filled and return a position object
+		var pos = {};
+		do {
+			pos.x = Math.floor(Math.random() * this.gridW);
+			pos.y = Math.floor(Math.random() * this.gridH);
+		} while (this.filledPositions[pos.x][pos.y]||pos.x>this.filledPositions.length-3||pos.y>this.filledPositions[pos.x].length-2);
+		
+		
+		// Monster fill surrounding cells
+		for (var i=0;i<3;i++) {
+			for (var j=0;j<2;j++) {
+				console.log("pos x:"+pos.x+" i:"+i+" y:"+pos.y+" j:"+j);
+				this.filledPositions[pos.x+i][pos.y+j] = true;
+				console.log("covered:x"+(pos.x+i)+" y:"+(pos.y+j));
+			}
+		}
+		
+		if (pos.x!=0) {
+			this.filledPositions[pos.x-1][pos.y] = true;
+			if (pos.y!=this.filledPositions[pos.x].length-1) {
+				this.filledPositions[pos.x-1][pos.y+1] = true;
+			}
+		}
+		
+		
+		
+		//console.log("x:"+pos.x+" y:"+pos.y);
+		pos.x=pos.x*40+30;
+		pos.y=pos.y*40+30;
+		
+		return pos;
+	}
+	
+	this.assignNewPositionBomb = function() {
+		//Try random grid positions until an empty one is found, then mark it as filled and return a position object
+		var pos = {};
+		do {
+			pos.x = Math.floor(Math.random() * this.gridW);
+			pos.y = Math.floor(Math.random() * this.gridH);
+		} while (this.filledPositions[pos.x][pos.y]);
+		
+		this.filledPositions[pos.x][pos.y] = true;
+		
+		if (this.filledPositions[pos.x][pos.y+1]==false) {
+			this.filledPositions[pos.x][pos.y+1] = true;
+		}
+		else if (pos!=0&&this.filledPositions[pos.x][pos.y-1]==false) {
+			this.filledPositions[pos.x][pos.y-1] = true;
+		}
+		
+		//console.log("x:"+pos.x+" y:"+pos.y);
+		console.log("covered:x"+pos.x+" y:"+pos.y);
+		pos.x=pos.x*40+30;
+		pos.y=pos.y*40+30;
+		
+		return pos;
+	}
+	
 	this.assignNewPosition = function() {
 		//Try random grid positions until an empty one is found, then mark it as filled and return a position object
 		var pos = {};
@@ -245,8 +308,9 @@ function Monsta(monstaCanvas,createjsVarName) {
 		
 		this.filledPositions[pos.x][pos.y] = true;
 		//console.log("x:"+pos.x+" y:"+pos.y);
-		pos.x=pos.x*40+30+Math.floor(Math.random()*26-13);
-		pos.y=pos.y*40+30+Math.floor(Math.random()*26-13);
+		console.log("covered:x"+pos.x+" y:"+pos.y);
+		pos.x=pos.x*40+30;
+		pos.y=pos.y*40+30;
 		
 		return pos;
 	}
@@ -325,9 +389,9 @@ function Monsta(monstaCanvas,createjsVarName) {
 	
 	
 	this.init();
-	this.createCoins();
-	this.createBomb();
 	this.createMonster();
+	this.createBomb();
+	this.createCoins();
 	this.addInstructions();
 	
 	monstaStage.update();
@@ -342,7 +406,6 @@ function monstaUpdateStage(monstaStage) {
 bombBitmap=true;
 
 function monstaUpdateBomb(bomb,BOMB_IMAGE, BOMB2_IMAGE) {
-	console.log("test");
 	if (bombBitmap) {
 		bomb.image=BOMB_IMAGE;
 	}
@@ -355,10 +418,3 @@ function monstaUpdateBomb(bomb,BOMB_IMAGE, BOMB2_IMAGE) {
 function monstaRestart(monsta) {
 	monsta.restart();
 }
-
-/*
-function resetStage() {
-	stage.clear();
-	stage.update();
-	init();
-}*/
