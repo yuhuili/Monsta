@@ -234,6 +234,8 @@ function Monsta(monstaCanvas,createjsVarName) {
 		thisBomb=this.bomb;
 		thisImage1=this.BOMB_IMAGE;
 		thisImage2=this.BOMB2_IMAGE;
+		
+		
 		this.timer1=setInterval(function() {
 			monstaUpdateBomb(thisBomb, thisImage1, thisImage2);
 		}, 50);
@@ -398,6 +400,7 @@ function Monsta(monstaCanvas,createjsVarName) {
 }
 
 function monstaUpdateStage(monstaStage) {
+	if (document.hidden) return;
 	if (monstaStage){
     	monstaStage.update();
 	}
@@ -405,7 +408,9 @@ function monstaUpdateStage(monstaStage) {
 
 bombBitmap=true;
 
+
 function monstaUpdateBomb(bomb,BOMB_IMAGE, BOMB2_IMAGE) {
+	if (document.hidden) return;
 	if (bombBitmap) {
 		bomb.image=BOMB_IMAGE;
 	}
