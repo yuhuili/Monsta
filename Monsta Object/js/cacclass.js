@@ -285,10 +285,10 @@ function Monsta(monstaCanvas,createjsVarName) {
 		
 		this.filledPositions[pos.x][pos.y] = true;
 		
-		if (this.filledPositions[pos.x][pos.y+1]==false) {
+		if (pos.y!=this.filledPositions[pos.x].length-1&&this.filledPositions[pos.x][pos.y+1]==false) {
 			this.filledPositions[pos.x][pos.y+1] = true;
 		}
-		else if (pos!=0&&this.filledPositions[pos.x][pos.y-1]==false) {
+		else if (pos.y!=0&&this.filledPositions[pos.x][pos.y-1]==false) {
 			this.filledPositions[pos.x][pos.y-1] = true;
 		}
 		
