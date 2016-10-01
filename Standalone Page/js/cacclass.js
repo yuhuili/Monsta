@@ -44,8 +44,8 @@ function Monsta(monstaCanvas,createjsVarName) {
 	this.OBSTACLE_Y_RANGE=130;
 	this.OBSTACLE_Y_OFFSET=10;
 	
-	this.CHENGGONGCODE=10410;
-	this.CHENGGONG=this.CHENGGONGCODE;
+	this.SUCCESS_CODE=10410;
+	this.SUCCESS=this.SUCCESS_CODE;
 	
 	
 	this.RESET_BUTTON_BG_RECT = new Object();
@@ -136,7 +136,7 @@ function Monsta(monstaCanvas,createjsVarName) {
 			myMonsta.eatTest();
 			// make sure to redraw the stage to show the change:
 			monstaStage.update();
-			if(this.CHENGGONG==this.CHENGGONGCODE) this.checkStatus;
+			if(this.SUCCESS==this.SUCCESS_CODE) this.checkStatus;
 		});
 	};
 	
@@ -189,7 +189,7 @@ function Monsta(monstaCanvas,createjsVarName) {
 	
 	this.checkStatus = function() {
 		if (!monstaStage.contains(this.coin1)&&!monstaStage.contains(this.coin2)&&!monstaStage.contains(this.coin3)) {
-			this.CHENGGONG=10880; // random number
+			this.SUCCESS=10880; // random number
 			monstaStage.removeChild(this.dragger);
 			monstaStage.removeChild(this.bomb);
 			this.showCompleted();

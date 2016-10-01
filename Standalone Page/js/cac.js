@@ -31,8 +31,8 @@ var OBSTACLE_X_OFFSET=0;
 var OBSTACLE_Y_RANGE=130;
 var OBSTACLE_Y_OFFSET=10;
 
-var CHENGGONGCODE=10410;
-var CHENGGONG=CHENGGONGCODE;
+var SUCCESSCODE=10410;
+var SUCCESS=SUCCESSCODE;
 
 
 var RESET_BUTTON_BG_RECT = new Object();
@@ -201,7 +201,7 @@ function createObstacles(stage) {
 		eatTest();
 		// make sure to redraw the stage to show the change:
 		stage.update();
-		if(CHENGGONG==CHENGGONGCODE) checkStatus();
+		if(SUCCESS==SUCCESSCODE) checkStatus();
 	});
 }
 
@@ -235,7 +235,7 @@ function assignNewPosition() {
 
 function checkStatus() {
 	if (!stage.contains(coin1)&&!stage.contains(coin2)&&!stage.contains(coin3)) {
-		CHENGGONG=10880; // random number
+		SUCCESS=10880; // random number
 		stage.removeChild(dragger);
 		stage.removeChild(bomb);
 		stage.update();
