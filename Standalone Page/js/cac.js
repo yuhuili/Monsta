@@ -61,7 +61,7 @@ BOMB_IMAGE.src = "bomb_40x40.png";
 
 var BACKGROUND_IMAGE = new Image();
 BACKGROUND_IMAGE.onload = updateStage;
-BACKGROUND_IMAGE.src = "background-captcha.jpg";
+BACKGROUND_IMAGE.src = "background-captcha1.jpg";
 
 var gridW = Math.floor(280 / 40);
 var gridH = Math.floor(120 / 40);
@@ -101,7 +101,13 @@ function init() {
 	background.graphics.beginFill(STAGE_COLOR).drawRoundRectComplex(0,MAIN_VIEW_HEIGHT,STAGE_WIDTH,STAGE_HEIGHT-MAIN_VIEW_HEIGHT,0,0,10,10);
 	stage.addChild(background);
 
-	// Background image
+	// Random Background image
+	var randBG = Math.random()*3;
+	if (randBG > 2){
+		this.BACKGROUND_IMAGE.src = "background-captcha3.jpg";
+	} else if (randBG > 1) {
+		this.BACKGROUND_IMAGE.src = "background-captcha2.jpg";
+	}
 	var background2 = new createjs.Bitmap(BACKGROUND_IMAGE);
 	stage.addChild(background2);
 	
