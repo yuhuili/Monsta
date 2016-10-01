@@ -72,7 +72,7 @@ function Monsta(monstaCanvas,createjsVarName) {
 	
 	this.BACKGROUND_IMAGE = new Image();
 	this.BACKGROUND_IMAGE.onload = monstaUpdateStage(monstaStage);
-	this.BACKGROUND_IMAGE.src = "background-captcha.jpg";
+	this.BACKGROUND_IMAGE.src = "background-captcha1.jpg";
 	
 	this.gridW = Math.floor(280 / 40);
 	this.gridH = Math.floor(120 / 40);
@@ -107,7 +107,13 @@ function Monsta(monstaCanvas,createjsVarName) {
 		this.background.graphics.beginFill(monstaStage_COLOR).drawRoundRectComplex(0,this.MAIN_VIEW_HEIGHT,monstaStage_WIDTH,monstaStage_HEIGHT-this.MAIN_VIEW_HEIGHT,0,0,10,10);
 		monstaStage.addChild(this.background);
 	
-		// Background image
+		// Random Background image
+		var randBG = Math.random()*3;
+		if (randBG > 2){
+			this.BACKGROUND_IMAGE.src = "background-captcha3.jpg";
+		} else if (randBG > 1) {
+			this.BACKGROUND_IMAGE.src = "background-captcha2.jpg";
+		}
 		this.background2 = new createjs.Bitmap(this.BACKGROUND_IMAGE);
 		monstaStage.addChild(this.background2);
 	}
