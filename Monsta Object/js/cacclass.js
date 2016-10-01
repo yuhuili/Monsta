@@ -76,7 +76,7 @@ function Monsta(monstaCanvas,createjsVarName) {
 	
 	this.BACKGROUND_IMAGE = new Image();
 	this.BACKGROUND_IMAGE.onload = monstaUpdateStage(monstaStage);
-	this.BACKGROUND_IMAGE.src = "background-captcha.jpg";
+	this.BACKGROUND_IMAGE.src = "background-captcha1.jpg";
 	
 	this.gridW = Math.floor(280 / 40);
 	this.gridH = Math.floor(120 / 40);
@@ -90,6 +90,12 @@ function Monsta(monstaCanvas,createjsVarName) {
 <a href="javascript:void(0)" id="cac_accessibility_button" class="cac_html_button" style="position:absolute;left:305px;top:210px;z-index:10"><i class="fa fa-wheelchair fa-2x"></i></a>
 <a href="javascript:void(0)" id="cac_question_button" class="cac_html_button"  style="position:absolute;left:360px;top:210px;z-index:10"><i class="fa fa-question fa-2x"></i></a>
 */
+    var randBG = Math.random()*3;
+    if (randBG > 2)
+      this.BACKGROUND_IMAGE.src = "background-captcha3.jpg";
+    else if (randBG > 1)
+      this.BACKGROUND_IMAGE.src = "background-captcha2.jpg";
+    
 		if($("#cac_reset_button").length == 0) {
 			//it doesn't exist
 			$("<a href=\"javascript:captcha.resetStage()\" id=\"cac_reset_button\" class=\"cac_html_button\" style=\"position:absolute;left:250px;top:210px;z-index:10\"><i class=\"fa fa-rotate-right fa-2x\"><\/i><\/a><a href=\"javascript:void(0)\" id=\"cac_accessibility_button\" class=\"cac_html_button\" style=\"position:absolute;left:305px;top:210px;z-index:10\"><i class=\"fa fa-wheelchair fa-2x\"><\/i><\/a><a href=\"javascript:void(0)\" id=\"cac_question_button\" class=\"cac_html_button\"  style=\"position:absolute;left:360px;top:210px;z-index:10\"><i class=\"fa fa-question fa-2x\"><\/i><\/a>").insertAfter("#"+monstaCanvas);
