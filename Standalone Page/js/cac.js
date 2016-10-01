@@ -102,10 +102,14 @@ function init() {
 	stage.addChild(background);
 
 	// Random Background image
-	var randBG = Math.random()*3;
-	if (randBG > 2){
+	var randBG = Math.random()*4;
+	if (randBG > 3){
+		this.BACKGROUND_IMAGE.src = "background-captcha4.jpg";
+	}
+	else if (randBG > 2){
 		this.BACKGROUND_IMAGE.src = "background-captcha3.jpg";
-	} else if (randBG > 1) {
+	}
+	else if (randBG > 1) {
 		this.BACKGROUND_IMAGE.src = "background-captcha2.jpg";
 	}
 	var background2 = new createjs.Bitmap(BACKGROUND_IMAGE);
